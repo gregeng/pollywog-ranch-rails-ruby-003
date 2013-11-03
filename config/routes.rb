@@ -1,6 +1,9 @@
 PollywogRanchRailsRuby003::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  resources :ponds, except: [:update, :destroy]
+  post '/ponds/:id/update' => 'ponds#update'
+  get '/ponds/:id/destroy' => 'ponds#destroy'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
@@ -39,7 +42,7 @@ PollywogRanchRailsRuby003::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
