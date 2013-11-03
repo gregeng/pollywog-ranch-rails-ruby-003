@@ -5,8 +5,18 @@ PollywogRanchRailsRuby003::Application.routes.draw do
   post '/ponds/:id/update' => 'ponds#update'
   get '/ponds/:id/destroy' => 'ponds#destroy'
 
+
+  resources :frogs, except: [:update, :destroy]
+  post '/frogs/:id/update' => 'ponds#update'
+  get '/frogs/:id/destroy' => 'ponds#destroy'
+
+  resources :tadpoles, except: [:update, :destroy]
+  post '/tadpoles/:id/update' => 'ponds#update'
+  get '/tadpoles/:id/destroy' => 'ponds#destroy'
+
+
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
