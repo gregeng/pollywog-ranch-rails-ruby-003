@@ -5,14 +5,15 @@ PollywogRanchRailsRuby003::Application.routes.draw do
   post '/ponds/:id/update' => 'ponds#update'
   get '/ponds/:id/destroy' => 'ponds#destroy'
 
-
   resources :frogs, except: [:update, :destroy]
-  post '/frogs/:id/update' => 'ponds#update'
-  get '/frogs/:id/destroy' => 'ponds#destroy'
+  post '/frogs/:id/update' => 'frogs#update'
+  get '/frogs/:id/destroy' => 'frogs#destroy'
+  get '/frogs/:id/tadpoles/new' => 'frogs#create_tadpole'
 
   resources :tadpoles, except: [:update, :destroy]
-  post '/tadpoles/:id/update' => 'ponds#update'
-  get '/tadpoles/:id/destroy' => 'ponds#destroy'
+  post '/tadpoles/:id/update' => 'tadpoles#update'
+  get '/tadpoles/:id/destroy' => 'tadpoles#destroy'
+  get '/tadpoles/:id/evolve' => 'tadpoles#evolve'
 
 
   # You can have the root of your site routed with "root"

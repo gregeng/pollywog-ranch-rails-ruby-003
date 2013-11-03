@@ -10,7 +10,7 @@ class TadpolesController < ApplicationController
     tadpole.color = params[:color]
     tadpole.frog = Frog.find_by(:id => params[:frog_id].to_i)
     if tadpole.save
-      redirect to('/tadpoles')
+      redirect_to('/tadpoles')
     else
       "Error unable to save! - params: #{params.inspect} - tadpole: #{tadpole}"
     end
@@ -44,4 +44,18 @@ class TadpolesController < ApplicationController
       "Error unable to delete! - params: #{params.inspect} - tadpole: #{tadpole}"
     end
   end
+
+  def evolve
+    tadpole = Tadpole.find(params[:id].to_i)
+    frog = Frog.new
+    frog.name = tadpole.name
+    frog.color = tadpole.color
+    frog.pond = tadpole.frog.pond
+    if frog.save && tadpole.destroy
+      redirect_to('/frogs')
+    else
+      "Error unable to evolve! - params: #{params.inspect} - tadpole: #{tadpole} - frog: #{frog}"
+    end
+  end
+
 end
